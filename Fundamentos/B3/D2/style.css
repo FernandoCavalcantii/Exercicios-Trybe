@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <title>HTML</title>
-    <style>
+<style>
 		  body {
 				font-size: 16px;
 			}
@@ -41,14 +36,3 @@
 				background-color: brown;
 			}
     </style>
-  </head>
-  <body>
-    <h1>Exercícios 3.2</h1>
-    <p class="blue-style">Qual é a sua cor favorita?</p>
-    <ul class="blue-style">
-      <li id="li1">Amarelo</li>
-      <li id="li2">Vermelho</li>
-      <li id="li3">Marrom</li>
-    </ul>
-  </body>
-</html>
