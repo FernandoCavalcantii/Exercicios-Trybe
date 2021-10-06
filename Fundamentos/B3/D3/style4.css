@@ -1,0 +1,26 @@
+div:hover {
+    border: solid black;
+}
+div:nth-child(3) {
+    background-color: rgba(0, 217, 255, 0.63);
+    font-size: 2em;
+    font-style: italic;
+}
+div:nth-child(4) {
+    background-color: chartreuse;
+    font-size: 2em;
+}
+div:nth-child(5) {
+    background-color: rgb(235, 97, 97);
+    font-size: 3em;
+    font-style: italic;
+}
+div:nth-child(6) {
+    background-color: brown;
+    font-size: 2em;
+}
+div:nth-child(7) {
+    background-color: yellow;
+    font-size: 2em;
+    font-style: italic;
+}
