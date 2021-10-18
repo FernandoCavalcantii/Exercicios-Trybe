@@ -27,4 +27,10 @@ let info2 = {
     recorrente: 'Sim'
   };
 
-  
+for (let key in info) {
+  if (key === 'recorrente' && info[key] === 'Sim' && info2[key]) {
+    console.log('Ambos recorrentes') 
+    } else {
+      console.log(`${info[key]} e ${info2[key]}`)
+    } 
+  }
