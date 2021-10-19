@@ -99,12 +99,19 @@ console.log(sum(5))
 // exercicio 7 
 
 function sentence (word, ending) {
-    let splitWord = word.split('').reverse()
-    for(let i=word.length; i > 0; i--) {
-        if (word[i] ===) {
-            
-        }
+    let splitWord = word.split('')
+    let container = [];
+    
+    for(let i=word.length - ending.length; i < word.length; i++) {
+        container.push(word[i]);
     }
+
+    if(container.join('') === ending) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
-console.log(sentence('fernando'))
+console.log(sentence('fernando', 'nando'))
