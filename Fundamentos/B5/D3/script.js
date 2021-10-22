@@ -40,8 +40,6 @@ function createDaysOfTheWeek() {
 
 let divBtnContainer = document.querySelector(".buttons-container");
 
-console.log(divBtnContainer);
-
 let btnFunc = function(str) {
   let button = document.createElement("button");
   button.innerHTML = str;
@@ -73,10 +71,11 @@ const fridayContainer = document.querySelector(".buttons-container");
 
 let sextaBtn = (str) => {
   let button = document.createElement("button");
+  button.innerHTML = str;
   button.id = "btn-friday";
   fridayContainer.appendChild(button);
 }
 
 sextaBtn("Sexta-feira");
 
-
+// exercicio 5
