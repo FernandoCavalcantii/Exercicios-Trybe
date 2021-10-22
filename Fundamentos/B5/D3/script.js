@@ -25,6 +25,14 @@ function createDaysOfTheWeek() {
   for(i=0;i < dezDaysList.length; i++) {
     let days = document.createElement("li");
     days.innerText = dezDaysList[i];
+
+    if (dezDaysList[i] === 24 || dezDaysList[i] === 25 || dezDaysList[i] === 31) {
+      days.className = "day holiday";
+    } else if (dezDaysList[i] === 4 || dezDaysList[i] === 11 || dezDaysList[i] === 18 || dezDaysList[i] === 25) {
+      days.className = "day friday";
+    } else {
+      days.className = "day";
+    }
     ulDays.appendChild(days);
   };
 
@@ -35,10 +43,40 @@ let divBtnContainer = document.querySelector(".buttons-container");
 console.log(divBtnContainer);
 
 let btnFunc = function(str) {
-  let butom = document.createElement("button");
-  butom.innerHTML = str;
-  butom.id = "btn-holiday";
-  divBtnContainer.appendChild(butom);
+  let button = document.createElement("button");
+  button.innerHTML = str;
+  button.id = "btn-holiday";
+  divBtnContainer.appendChild(button);
 };
 
-btnFunc("STF");
+btnFunc("Feriados");
+
+// exercicio 3
+
+let holidayBtn = document.querySelector("#btn-holiday");
+let holidayDays = document.querySelectorAll(".holiday");
+
+
+holidayBtn.addEventListener("click", function() {
+  for (let i=0; i < holidayDays.length; i++) {
+    if (holidayDays[i].style.backgroundColor === "purple") {
+      holidayDays[i].style.backgroundColor = "rgb(238,238,238)";
+    } else {
+       holidayDays[i].style.backgroundColor = "purple";
+    }
+  }
+});
+
+// exercicio 4
+
+const fridayContainer = document.querySelector(".buttons-container");
+
+let sextaBtn = (str) => {
+  let button = document.createElement("button");
+  button.id = "btn-friday";
+  fridayContainer.appendChild(button);
+}
+
+sextaBtn("Sexta-feira");
+
+
