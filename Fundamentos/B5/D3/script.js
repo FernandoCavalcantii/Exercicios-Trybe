@@ -29,3 +29,16 @@ function createDaysOfTheWeek() {
   };
 
 // exercicio 2
+
+let divBtnContainer = document.querySelector(".buttons-container");
+
+console.log(divBtnContainer);
+
+let btnFunc = function(str) {
+  let butom = document.createElement("button");
+  butom.innerHTML = str;
+  butom.id = "btn-holiday";
+  divBtnContainer.appendChild(butom);
+};
+
+btnFunc("STF");
