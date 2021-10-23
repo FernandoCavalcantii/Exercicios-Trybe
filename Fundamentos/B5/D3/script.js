@@ -22,13 +22,15 @@ function createDaysOfTheWeek() {
   const ulDays = document.querySelector("#days");
   
 
-  for(i=0;i < dezDaysList.length; i++) {
+  for(let i=0;i < dezDaysList.length; i++) {
     let days = document.createElement("li");
     days.innerText = dezDaysList[i];
 
-    if (dezDaysList[i] === 24 || dezDaysList[i] === 25 || dezDaysList[i] === 31) {
+    if (dezDaysList[i] === 24 || dezDaysList[i] === 31) {
       days.className = "day holiday";
-    } else if (dezDaysList[i] === 4 || dezDaysList[i] === 11 || dezDaysList[i] === 18 || dezDaysList[i] === 25) {
+    } else if (dezDaysList[i] === 25) {
+      days.className = "day holiday friday"
+    } else if (dezDaysList[i] === 4 || dezDaysList[i] === 11 || dezDaysList[i] === 18 ) {
       days.className = "day friday";
     } else {
       days.className = "day";
@@ -79,3 +81,19 @@ let sextaBtn = (str) => {
 sextaBtn("Sexta-feira");
 
 // exercicio 5
+
+let fridayBtn = document.querySelector("#btn-friday");
+let friDays = document.querySelectorAll(".friday");
+
+let sextas = [4, 11, 18, 25];
+
+fridayBtn.addEventListener("click", function() {
+  // fazer for / hospedar nº dos dias em variaveis
+  for (let i=0; i < friDays.length; i++) {
+    if (friDays[i].innerText == 4 || friDays[i].innerText == 11 || friDays[i].innerText == 18 || friDays[i].innerText == 25) {
+      friDays[i].innerText = "Sextou!";
+    } else {
+      friDays[i].innerText = sextas[i];
+    }
+  }
+})
