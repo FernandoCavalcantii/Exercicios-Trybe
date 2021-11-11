@@ -1,0 +1,100 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  @media screen and (max-width: 600px) {
+      nav {
+          display: none;
+      }
+
+      header {
+          display: flex;
+          justify-content: center;
+      }
+      .aside-one {
+          display: flex;
+          justify-content: center;
+      }
+
+      .aside-two {
+          display: flex;
+          justify-content: center;
+      }
+
+      .main-content h1 {
+          text-align: center;
+      }
+
+      footer h3 {
+          text-align: center;
+      }
+  }
+
+  @media screen and (min-width: 601px) and (max-width: 1000px) {
+      
+       header {
+           display: flex;
+           justify-content: space-between;
+           background-color: brown;
+           margin-left: 160px;
+           margin-right: 160px;
+           padding: 0px 10px;
+      }
+
+      header li {
+          list-style: none;
+          margin-left: 5px;
+      }
+
+      header p {
+          font-size: 1.5rem;
+      }
+
+      nav {
+          align-self: center;
+      }
+
+      nav ul {
+          display: flex;
+      }
+
+      .aside-one{
+          height: 100%;
+          width: 160px;
+          position: fixed;
+          /* z-index: 1; */
+          top: 0;
+          left: 0;
+          /* overflow-x: hidden; */
+          background-color: black;
+          color: blanchedalmond;
+          padding-top: 20px;
+          /* border:groove blue 5px; */
+      }
+
+      .main-content {
+          margin-left: 160px;
+          margin-right: 160px;
+          padding: 0px 10px;
+      }
+
+      .aside-two {
+          height: 100%;
+          width: 160px;
+          top: 0;
+          right: 0;
+          position: fixed;
+          background-color:grey;
+          padding-top: 20px;
+          border: dashed black 5px;
+      }
+
+      footer {
+          margin-left: 160px;
+          margin-right: 160px;
+          padding: 0px 10px;
+      }
+  }

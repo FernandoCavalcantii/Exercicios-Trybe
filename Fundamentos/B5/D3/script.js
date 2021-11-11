@@ -96,4 +96,12 @@ fridayBtn.addEventListener("click", function() {
       friDays[i].innerText = sextas[i];
     }
   }
+});
+
+// exercicio 6
+
+let days = document.querySelectorAll("#day");
+
+days.addEventListener("mousemove", function() {
+  days.style.fontSize = 140px;
 })
