@@ -1,0 +1,3 @@
+Prof usa insomnia ao invés do Postman que também tem no course. *Usar esses clients HTTP é mais interessante que fazer requisição através do navegador (exp: http://localhost:3000/) por que nem toda requisição se da para fazer diretamente pelo navegador.
+
+Terceira opção httpie.io https://httpie.io/, faz requisição via terminal, documentação de instalação https://httpie.io/docs/cli/installation.
