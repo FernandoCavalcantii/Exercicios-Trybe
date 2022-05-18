@@ -1,0 +1,1 @@
+O recipes-api contém o exemplo mais completo da fixação em relação a ser a API mais completa, com mais métodos, funcionalidades, imports.

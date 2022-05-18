@@ -1,0 +1,2 @@
+Documentação oficial da ferramente de testes Chai
+https://www.chaijs.com/api/bdd/

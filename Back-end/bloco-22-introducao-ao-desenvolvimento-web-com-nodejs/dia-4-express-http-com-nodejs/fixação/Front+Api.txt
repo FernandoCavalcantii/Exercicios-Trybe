@@ -1,0 +1,1 @@
+Front criado com: npx create-react-app@5.0.1, API criada com: npm init -y, npm i cors express, npm i -D nodemon. *Cors necessário para integrar front com back*. Roda o npm run dev na pasta da API para subir a API, roda o npm start no front para renderizar no localhost:3000, front consumindo API criada por mim. Show de bola, primeiro Front + Back, felicidade define!
