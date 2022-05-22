@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "docker",
+    "database": "library",
+    "host": "library_db",
+    "dialect": "mysql"
+  }
+}
+
