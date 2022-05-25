@@ -1,0 +1,54 @@
+# Exp feito pelo professor em aula
+
+version: '3.1'
+
+services:
+  # Serviço que irá rodar o banco de dados
+  mysql:
+    image: mysql:5.7
+    container_name: associations_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+    ports:
+      # Garanta que não haverá conflitos de porta com um banco que esteja
+      # rodando localmente
+      - 3306:3306
+  # Serviço que irá rodar o node
+  api:
+    # Imagem base do container
+    image: node:16
+    # Nome do container para facilitar execução
+    container_name: associations_api
+    # Restarta a imagem caso algo a faça parar
+    restart: always
+    # Lista de portas mapeadas de dentro para fora do container
+    ports:
+      # Expõe a porta padrão da aplicação: altere aqui caso use outra porta
+      - 3001:3001
+    # na notação porta_de_fora:porta_de_dentro
+    # Configura as variáveis de ambiente dentro do container
+    environment:
+    # Esse environment é o mesmo que criar o dotenv para usar o process.env
+      - DB_HOST=mysql # Nome do service acima
+      - DB_NAME=associations
+      - DB_USER=root
+      - DB_PASSWORD=docker
+      - SERVER_PORT=3001
+    # Lista de volumes (diretórios) mapeados de fora para dentro do container
+    # Na minha raiz atual, ou seja, onde está o meu docker-compose.yaml, eu quero que reflita todas as minhas alterações dessa pasta na minha máquina local, na pasta especificada do meu container, no caso /usr/app
+    volumes:
+      # Monta o diretório atual, com todos os dados do projeto, 
+      # dentro do diretório /usr/app
+      - ./:/usr/app
+    # Diretório padrão de execução
+    working_dir: /usr/app
+    # Substitui o comando padrão da imagem do node
+    command: bash
+    # Mesmo que `docker run -t`
+    tty: true
+    # Mesmo que `docker run -i`
+    stdin_open: true
+    # Lista de serviços do qual este serviço depende
+    depends_on:
+      # Precisa do banco funcionando antes de subir o node
+      - mysql
