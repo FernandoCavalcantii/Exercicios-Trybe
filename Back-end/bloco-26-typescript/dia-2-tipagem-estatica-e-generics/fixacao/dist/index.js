@@ -47,7 +47,7 @@ class Modulo {
     info() {
         console.log(`
     Disciplina: ${this._nome} \n
-    Professor: ${this._professor} \n
+    Professores: ${this._professor} \n
     Horario: ${this._horario} \n
     Coordenador: ${this._coordenador}`);
     }
