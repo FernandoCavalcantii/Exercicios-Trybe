@@ -8,7 +8,8 @@ const errorMiddleware = (
   next: NextFunction,
 ): void => {
   console.error(
-    `Code: ${err.code}
+    `---- Error ----
+    Code: ${err.code}
     message: ${err.message}`,
   );
 

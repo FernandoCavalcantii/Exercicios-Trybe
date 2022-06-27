@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import ErrorObj from '../Helpers/ErrorObj';
+// import ErrorObj from '../Helpers/ErrorObj';
 import { IPlantsService } from '../Interfaces/Interfaces';
 
 export default class PlantsController {
@@ -16,9 +16,12 @@ export default class PlantsController {
   }
 
   async getPlantById(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const { id } = req.params;
-    const plant = await this.plantsService.getPlantById(id);
-    if (plant instanceof ErrorObj) return next(plant);
-    res.status(StatusCodes.OK).json(plant);
+    try {
+      const { id } = req.params;
+      const plant = await this.plantsService.getPlantById(id);
+      res.status(StatusCodes.OK).json(plant);
+    } catch (e) {
+      next(e);
+    }
   }
 }

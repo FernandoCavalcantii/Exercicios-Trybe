@@ -17,7 +17,9 @@ export default class PlantsService {
 
   async getPlantById(id: string): Promise<IPlant | ErrorObj> {
     const plant = await this.plantsModel.getPlantById(id);
-    if (!plant) return new ErrorObj(StatusCodes.NOT_FOUND, 'Plant ID not found');
+    if (!plant) throw new ErrorObj(StatusCodes.NOT_FOUND, 'Plant ID not found');
+    console.log('passou do throw');
+    console.log('plant', plant);
     return plant;
   }
 }
