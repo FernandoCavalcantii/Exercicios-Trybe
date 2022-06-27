@@ -11,11 +11,11 @@ Ensina o necessário para iniciar uma carreira no mundo do desenvolvimento Web, 
 Dentre outros conteúdos, aborda:
 
 - Unix e Bash
-- Git e Github
+- Git e GitHub
 - Markdown
-- Html
+- HTML
 - CSS
-- Javascript
+- JavaScript
 - Consumo de API
 
 #### Front-end:
@@ -29,22 +29,22 @@ Dentre outros conteúdos, aborda:
 - React Router
 - Ciclo de vida de componentes React
 - Métodos ágeis
-- React testing library
-- React redux
-- Context api
+- React Testing Library
+- React Redux
+- Context API
 - React Hooks
 
 #### Back-end:
 
-Aqui, é abordado a estrutura que possibilita a operação do sistema, além da integração do Front-end com o Back-end.
+Aqui, o conteudo engloba a estrutura que possibilita a operação do sistema, além da integração do front-end com o back-end.
 
 Dentre outros conteúdos, aborda:
 
 - Docker
 - SQL
-- Node.js (Arquitetura: Rest e Restful, ORM e Autenticação)
+- Node.js (Arquitetura: Rest e RESTful, ORM e Autenticação)
 - Implantação de software (Deployment)
-- Typescript
+- TypeScript
 - Programação Orientada a Objetos
 - SOLID
 - MongoDB
