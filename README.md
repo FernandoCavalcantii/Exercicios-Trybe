@@ -2,7 +2,7 @@
 
 ### Descrição:
 
-Repositório contendo as atividades diárias desenvolvidas ao longo do curso de programação da Trybe, divido em quatro módulos: Fundamentos, Front-end, Back-end e Ciências da Computação.
+Repositório contendo as atividades diárias desenvolvidas ao longo do curso de programação da Trybe, dividido em quatro módulos: Fundamentos, Front-end, Back-end e Ciências da Computação.
 
 #### Fundamentos:
 
