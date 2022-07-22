@@ -1,10 +1,8 @@
 import React from 'react';
-import ToDoProvider from './context/todoProvider';
+import LoginProvider from './context/loginProvider';
 
 const App = () => {
-  return (
-    <ToDoProvider />
-  );
-}
+  return <LoginProvider />;
+};
 
 export default App;
