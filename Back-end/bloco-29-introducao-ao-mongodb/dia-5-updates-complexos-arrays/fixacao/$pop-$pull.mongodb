@@ -1,0 +1,65 @@
+use('sales');
+
+// -> $pop <-
+// remove primeiro ou ultimo elemento da array
+
+// primeiro
+db.supplies.updateOne({ _id: 1 }, { $pop: { items: -1 } });
+
+// ultimo
+db.supplies.updateOne({ _id: 1 }, { $pop: { items: 1 } });
+
+
+// -> $pull <-
+// $pull remove de um array existente todos os elementos com um ou mais valores que atendam à condição especificada.
+
+db.supplies.updateMany(
+  {},
+  {
+    $pull: {
+      items: {
+        name: { $in: ["pens", "envelopes"] },
+      },
+    },
+  },
+);
+
+db.profiles.insertOne(
+  { _id: 1, votes: [3, 5, 6, 7, 7, 8] }
+)
+
+db.profiles.updateOne(
+  { _id: 1 },
+  {
+    $pull: {
+      votes: { $gte: 6 },
+    },
+  },
+);
+
+db.survey.insertMany([
+  {
+  _id: 1,
+  results: [
+    { item: "A", score: 5 },
+    { item: "B", score: 8, comment: "Strongly agree" },
+  ],
+},
+{
+  _id: 2,
+  results: [
+    { item: "C", score: 8, comment: "Strongly agree" },
+    { item: "B", score: 4 },
+  ],
+}
+])
+
+
+db.survey.updateMany(
+  {},
+  {
+    $pull: {
+      results: { score: 8 , item: "B" },
+    },
+  },
+);
