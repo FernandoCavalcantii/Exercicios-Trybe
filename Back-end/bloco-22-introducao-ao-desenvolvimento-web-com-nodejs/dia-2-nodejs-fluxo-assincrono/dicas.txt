@@ -1,0 +1,3 @@
+Ver paralelismo node.js
+
+Flags de métodos de leitura e escrita no fs: https://nodejs.org/api/fs.html#fs_file_system_flags

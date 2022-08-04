@@ -1,0 +1,25 @@
+version: "3"
+services:
+  ghost:
+    image: ghost:1-alpine
+    environment:
+      - databaseClient=mysql
+      - database_connection_database=ghost
+      - database_connection_host=db
+      - database_connection_user=root
+      - database__connection__password=default
+    restart: always
+    ports:
+      - 2368:2368
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
+    volumes:
+      - /home/fernando/Pasta1/Exerc-cios-Trybe/Back-end/B19-docker/dia-3-orquestrando-containers-com-docker-compose/exercicio-4:/var/lib/mysql
+    networks:
+      - my-network
+networks:
+  my-network:

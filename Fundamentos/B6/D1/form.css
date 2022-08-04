@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(19, 226, 129);
+    font-family: serif;
+}
+
+header h1 {
+    text-align: center;
+    color: rgb(48, 45, 41);
+}
+
+main {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 20px;
+}
+
+.field1 {
+    border: 3px solid rgb(30, 133, 10);
+    font-size: 1.2rem;
+}
+
+.field1 input, select {
+    width: 97%;
+    margin: 5px;
+    background-color: rgb(212, 209, 203);
+}
+
+.radio input {
+    width: 30%;
+}
+
+@media screen  and (max-width: 866px) {
+    .radio {
+        width: 15%;
+    }
+}

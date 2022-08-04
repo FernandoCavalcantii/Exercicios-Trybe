@@ -1,0 +1,469 @@
+Exercícios de fixação - normalização de dados
+
+Vamos consolidar toda a explicação passada até o momento através de alguns desafios.
+Exercício 1: Normalize a tabela a seguir para a 1ª Forma Normal.
+
+Não se preocupe em montar a estrutura em código SQL neste primeiro momento. Crie apenas uma planilha (Excel, Google Sheets, Open Office Calc ou semelhantes) da estrutura esperada.
+
+Funcionario_id	Nome	    Sobrenome	Contato	                    Contato	            DataCadastro	        Setor
+12	            Joseph	    Rodrigues	jo@gmail.com	            (35)998552-1445	    2020-05-05 08:50:25	    Administração, Vendas
+13	            André	    Freeman	    andre1990@gmail.com	        (47)99522-4996	    5 de Fevereiro de 2020	Operacional
+14	            Cíntia	    Duval	    cindy@outlook.com	        (33)99855-4669	    2020-05-05 10:55:35	    Estratégico, Vendas
+15	            Fernanda	Mendes	    fernandamendes@yahoo.com	(33)99200-1556	    2020-05-05 11:45:40	    Marketing
+
+Resposta:
+
+                                                                funcionario
+Funcionario_id	Nome	    Sobrenome	Email	                    Contato	            DataCadastro	        Setor_id
+12	            Joseph	    Rodrigues	jo@gmail.com	            (35)998552-1445	    2020-05-05 08:50:25	    Administração, Vendas
+13	            André	    Freeman	    andre1990@gmail.com	        (47)99522-4996	    2020-01-05 10:55:25 	Operacional
+14	            Cíntia	    Duval	    cindy@outlook.com	        (33)99855-4669	    2020-05-05 10:55:35	    Estratégico, Vendas
+15	            Fernanda	Mendes	    fernandamendes@yahoo.com	(33)99200-1556	    2020-05-05 11:45:40	    Marketing
+
+                                                                setor
+Setor_id	Setor           
+1	        Administração 
+2           Vendas
+3	        Operacional
+4	        Estratégico
+5	        Marketing
+
+                                                            funcionario_setor
+funcionario_id  Setor_id         
+12	            1 
+12              2
+13              3
+14	            4
+14	            2
+15	            5
+
+Resp Trybe:
+
+                            Tabela funcionario
+funcionario_id	nome	    sobrenome	contato	                    telefone	        data_cadastro
+12	            Joseph	    Rodrigues	jo@gmail.com	            (35)998552-1445	    2020-05-05 08:50:25
+13	            André	    Freeman	    andre1990@gmail.com	        (47)99522-4996	    2020-02-05 00:00:00
+14	            Cíntia	    Duval	    cindy@outlook.com	        (33)99855-4669	    2020-05-05 10:55:35
+15	            Fernanda	Mendes	    fernandamendes@yahoo.com	(33)99200-1556	    2020-05-05 11:45:40
+
+                            Tabela setor
+setor_id	funcionario_id	setor
+1	        12	            Administração
+2	        12	            Vendas
+3	        13	            Operacional
+4	        14	            Estratégico
+5	        14	            Vendas
+6	        15	            Marketing
+
+Exercício 2: Usando a estrutura (já normalizada para 1ª Forma Normal) da tabela anterior, transforme-a agora na 2ª Forma Normal.
+
+Resposta:
+                            Tabela funcionario
+funcionario_id	nome	    sobrenome	contato_id	    data_cadastro
+12	            Joseph	    Rodrigues	1	            2020-05-05 08:50:25
+13	            André	    Freeman	    2	            2020-02-05 00:00:00
+14	            Cíntia	    Duval	    3	            2020-05-05 10:55:35
+15	            Fernanda	Mendes	    4               2020-05-05 11:45:40
+
+                            Tabela setor
+setor_id	funcionario_id	setor
+1	        12	            Administração
+2	        12	            Vendas
+3	        13	            Operacional
+4	        14	            Estratégico
+5	        14	            Vendas
+6	        15	            Marketing
+
+                            Tabela contato
+contato_id		contato	                    telefone
+1               jo@gmail.com	            (35)998552-1445	   
+2	            andre1990@gmail.com	        (47)99522-4996	    
+3	            cindy@outlook.com	        (33)99855-4669	    
+4	            fernandamendes@yahoo.com	(33)99200-1556
+
+Resp Trybe:
+
+Tabela funcionario
+funcionario_id	nome	    sobrenome	contato	                    telefone	    data_cadastro
+12	            Joseph	    Rodrigues	jo@gmail.com	            (35)998552-1445	2020-05-05 08:50:25
+13	            André	    Freeman	    andre1990@gmail.com	        (47)99522-4996	2020-02-05 00:00:00
+14	            Cíntia	    Duval	    cindy@outlook.com	        (33)99855-4669	2020-05-05 10:55:35
+15	            Fernanda	Mendes	    fernandamendes@yahoo.com	(33)99200-1556	2020-05-05 11:45:40
+
+Tabela setor
+setor_id	nome
+1	        Administração
+2	        Vendas
+3	        Operacional
+4	        Estratégico
+5	        Marketing
+
+Tabela setor_funcionario ou funcionario_setor (ou algum nome que represente, de forma inequívoca, os dados presentes nessa tabela)
+funcionario_id	setor_id
+12	            1
+12	            2
+13	            3
+14	            4
+14	            2
+15	            5
+
+Exerício 3: Monte uma query que:
+Crie um banco de dados chamado normalization ;
+Crie todas as tabelas resultantes do exercício 3 (na 2ª Forma Normal);
+Popule todas as tabelas com os dados fornecidos nos exerícios.
+
+DROP SCHEMA IF EXISTS normalization;
+CREATE DATABASE normalization;
+USE normalization;
+CREATE TABLE funcionario(
+  funcionario_id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(50) NOT NULL,
+  sobrenome VARCHAR(50) NOT NULL,
+  contato VARCHAR(50) NOT NULL,
+  telefone VARCHAR(50) NOT NULL,
+  data_cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE = InnoDB;
+CREATE TABLE setor(
+  setor_id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(50) NOT NULL
+) ENGINE = InnoDB;
+CREATE TABLE setor_funcionario(
+  funcionario_id INT NOT NULL,
+  setor_id INT NOT NULL,
+  FOREIGN KEY (funcionario_id) REFERENCES funcionario(funcionario_id),
+  FOREIGN KEY (setor_id) REFERENCES setor(setor_id)
+) ENGINE = InnoDB;
+INSERT INTO
+  funcionario (
+    funcionario_id,
+    nome,
+    sobrenome,
+    contato,
+    telefone
+  )
+VALUES
+  (
+    12,
+    'Joseph',
+    'Rodrigues',
+    'jo@gmail.com',
+    '(35)998552-1445'
+  ),
+  (
+    13,
+    'André',
+    'Freeman',
+    'andre1990@gmail.com',
+    '(47)99522-4996'
+  ),
+  (
+    14,
+    'Cíntia',
+    'Duval',
+    'cindy@outlook.com',
+    '(33)99855-4669'
+  ),
+  (
+    15,
+    'Fernanda',
+    'Mendes',
+    'fernandamendes@yahoo.com',
+    '(33)99200-1556'
+  );
+INSERT INTO
+  setor (nome)
+VALUES
+  ('Administração'),
+  ('Vendas'),
+  ('Operacional'),
+  ('Estratégico'),
+  ('Marketing');
+INSERT INTO
+  setor_funcionario (funcionario_id, setor_id)
+VALUES(12, 1),
+  (12, 2),
+  (13, 3),
+  (14, 4),
+  (14, 2),
+  (15, 5);
+
+Hora de mexer os dedos
+Após ter visto todo o processo de como sair de um problema e chegar até a criação de um banco de dados, é preciso um certo tempo para internalizar esse conteúdo. Com isso em mente, segue a proposta:
+Com o intuito de te dar mais tempo para absorver o material de hoje, tente refazer o banco de dados albuns , caso já o tenha criado no decorrer da aula de hoje. Então, apague o banco de dados e recarregue a página para que as respostas sobre como criar o banco de dados e tabelas não estejam visíveis e expandidas.
+Tente, com a ajuda do material de hoje:
+Identificar as entidades, atributos e relacionamentos.
+Criar o diagrama e o banco novamente por conta própria, sem olhar as respostas, que estão encapsuladas.
+
+O problema - Catálogo de Álbuns
+Suponha que seja necessário armazenar informações de álbuns musicais para formar um catálogo. Para isso seria criado um banco de dados, e nesse banco de dados teríamos o que chamamos de tabela. Pensando em nosso exemplo, poderíamos ter uma tabela chamada albuns_musicais , onde as informações de cada álbum a serem armazenadas na respectiva tabela seriam:
+Título;
+Preço;
+Estilo Musical;
+Canções.
+Poderíamos também, dentro do mesmo banco de dados, ter outra tabela que armazenaria informações do artista, visto que cada artista pode produzir vários álbuns, criando assim um relacionamento entre tabelas (Veremos isso mais a frente, em outro momento).
+
+Database Design - Como modelar um banco de dados
+
+Existem alguns passos a serem seguidos durante a modelagem e criação de um banco de dados. Um fluxo bastante comum nesse processo consiste em:
+
+Identificar as entidades , atributos e relacionamentos com base na descrição do problema;
+
+Construir um diagrama entidade-relacionamento para representar as entidades encontradas no passo 1;
+
+Criar um banco de dados para conter suas tabelas;
+
+Criar e modelar tabelas tendo o diagrama do passo 2 como base.
+
+A seguir você verá como realizar cada um desses passos.
+
+1) Identificando entidades, atributos e relacionamentos
+
+Primeiramente você deve identificar as entidades , atributos e relacionamentos com base na descrição do problema. Porém, antes disso é necessário entender o significado de cada um deles.
+
+Entidades:
+
+São uma representação de algo do mundo real dentro do banco de dados. Elas normalmente englobam toda uma ideia e são armazenadas em formato de tabelas em um banco de dados.
+
+Antes de expandir o código a seguir: Volte à descrição do problema acima e busque identificar quais objetos devem se tornar entidades. Depois expanda o código abaixo para verificar.
+
+Entidade 1: `Álbum`;
+Entidade 2: `Artista`;
+Entidade 3: `Estilo Musical`;
+Entidade 4: `Canção`.
+
+Atributos:
+
+Os atributos são tudo aquilo que pode ser usado para descrever algo. Por exemplo, uma entidade pessoa pode ter nome, altura, peso e idade.
+
+Antes de expandir o código a seguir: Considerando a história anterior sobre um catálogo de álbuns musicais, tente deduzir quais propriedades descrevem cada uma das entidades encontradas anteriormente.
+
+Álbum: `album_id`, `titulo`, `preco`, `estilo_id` e `artista_id`;
+Artista: `artista_id` e `nome`;
+Estilo Musical: `estilo_id` e `nome`;
+Canção: `cancao_id`, `nome` e `album_id`.
+
+Algo a ser notado aqui é que algumas informações precisam ser deduzidas, como, por exemplo, a coluna que armazena o identificador único dos registros (aqui chamado de id), que todas tabelas precisam ter.
+
+Relacionamentos:
+Os relacionamentos servem para representar como uma entidade deve estar ligada com outra(s) no banco de dados. Há três tipos de relacionamentos possíveis em um banco de dados, que são:
+Relacionamento Um para Um (1..1):
+
+Nesse tipo de relacionamento, uma linha da Tabela A deve possuir apenas uma linha correspondente na Tabela B e vice-versa. Veja o exemplo abaixo:
+
+Apesar de ser possível inserir essas informações em apenas uma tabela, esse tipo de relacionamento é usado normalmente quando se quer dividir as informações de uma tabela maior em tabelas menores, evitando que as tabelas tenham dezenas de colunas.
+
+
+Relacionamento Um para Muitos ou Muitos para Um (1..N):
+Esse é um dos tipos mais comuns de relacionamento. Em cenários assim, uma linha na Tabela A pode ter várias linhas correspondentes na Tabela B , mas uma linha da Tabela B só pode possuir uma linha correspondente na Tabela A . Veja o exemplo abaixo:
+
+Nesse exemplo, uma categoria pode estar ligada a vários livros, embora um livro deva possuir apenas uma categoria.
+
+Relacionamento Muitos para Muitos (N..N):
+
+O relacionamento muitos para muitos acontece quando uma linha na Tabela A pode possuir muitas linhas correspondentes na Tabela B e vice-versa. Veja o exemplo abaixo:
+
+Esse tipo de relacionamento pode ser visto também como dois relacionamentos um para muitos ligados por uma tabela intermediária, como é o caso da tabela filme_ator . Pode-se chamar essa tabela intermediária de tabela de junção . Ela é usada para guardar informações de como as tabelas se relacionam entre si. Desta maneira, quando se quer demonstrar que um filme pode contar com vários atores e também que os atores podem atuar em vários filmes, surge a necessidade de um relacionamento muitos para muitos.
+
+Antes de expandir o código a seguir: Volte à estrutura de tabelas do Catálogo de Álbuns e tente identificar quais tipos de relacionamentos existem entre as tabelas. Escreva-os em algum lugar e depois expanda abaixo para ver os relacionamentos. Praticar essa habilidade é crucial.
+
+Album-Artista (N:1)
+Album-Estilo Musical (N:N)
+Album-Canção (1:N)
+Artista-Estilo Musical (N:N)
+Artista-Canção (1:N)
+
+2) Construindo um diagrama entidade-relacionamento
+No segundo passo, será construído um diagrama entidade-relacionamento para representar as entidades encontradas no passo 1.
+Existem diversas ferramentas para modelar os relacionamentos em um banco de dados. Hoje será usada a draw.io para criar os modelos. Você pode aprender como utilizar essa ferramenta assistindo a este vídeo.
+Agora é preciso montar um diagrama de relacionamento básico que demonstra como uma entidade é relacionada com a outra, usando o modelo EntidadeA + verbo + EntidadeB .
+Considerando as entidades Álbum , Artista , Estilo Musical e Canção , foi construído o seguinte diagrama:
+
+Exercícios de fixação - normalização de dados
+
+Vamos consolidar toda a explicação passada até o momento através de alguns desafios.
+
+Exercício 1: Normalize a tabela a seguir para a 1ª Forma Normal.
+
+Não se preocupe em montar a estrutura em código SQL neste primeiro momento. Crie apenas uma planilha (Excel, Google Sheets, Open Office Calc ou semelhantes) da estrutura esperada.
+
+Funcionario_id	  Nome	    Sobrenome	   Contato	                Contato	          DataCadastro	          Setor
+12	              Joseph	  Rodrigues	   jo@gmail.com	            (35)998552-1445	  2020-05-05 08:50:25	    Administração, Vendas
+13	              André	    Freeman	     andre1990@gmail.com	    (47)99522-4996	  5 de Fevereiro de 2020	Operacional
+14	              Cíntia	  Duval	       cindy@outlook.com	      (33)99855-4669	  2020-05-05 10:55:35	    Estratégico, Vendas
+15	              Fernanda	Mendes	     fernandamendes@yahoo.com	(33)99200-1556	  2020-05-05 11:45:40	    Marketing
+
+Resposta:
+
+Tabela Funcionario
+Funcionario_id	  Nome	    Sobrenome	   Email	                  Contato	          DataCadastro	     
+12	              Joseph	  Rodrigues	   jo@gmail.com	            (35)998552-1445	  2020-05-05 08:50:25	    
+13	              André	    Freeman	     andre1990@gmail.com	    (47)99522-4996	  2020-02-05 hh:mm:ss     
+14	              Cíntia	  Duval	       cindy@outlook.com	      (33)99855-4669	  2020-05-05 10:55:35	   
+15	              Fernanda	Mendes	     fernandamendes@yahoo.com	(33)99200-1556	  2020-05-05 11:45:40
+
+Tabela Setor
+Setor_id	  Setor
+1           Administração
+2           Vendas
+3           Operacional
+4           Estratégico
+5           Marketing
+
+Tabela funcionario_setor
+Funcionario_id	  Setor_id
+12                1
+12                2
+13                3
+14                2
+14                4
+15                5
+
+Exercício 2: Usando a estrutura (já normalizada para 1ª Forma Normal) da tabela anterior, transforme-a agora na 2ª Forma Normal.
+
+Resposta:
+
+Tabela Funcionario
+Funcionario_id	  Nome	    Sobrenome	   Info_id    DataCadastro	     
+12	              Joseph	  Rodrigues	   1          2020-05-05 08:50:25	    
+13	              André	    Freeman	     2          2020-02-05 hh:mm:ss     
+14	              Cíntia	  Duval	       3          2020-05-05 10:55:35	   
+15	              Fernanda	Mendes	     4          2020-05-05 11:45:40
+
+Tabela funcionario_info
+Info_id	        Funcionario_id	 	     Email	                    Contato	          	     
+1	              12	                   jo@gmail.com	              (35)998552-1445	  	    
+2	              13	                   andre1990@gmail.com	      (47)99522-4996	       
+3	              14	                   cindy@outlook.com	        (33)99855-4669	  	   
+4	              15		                 fernandamendes@yahoo.com	  (33)99200-1556	  
+
+Tabela Setor
+Setor_id	  Setor
+1           Administração
+2           Vendas
+3           Operacional
+4           Estratégico
+5           Marketing
+
+Tabela funcionario_setor
+Funcionario_id	  Setor_id
+12                1
+12                2
+13                3
+14                2
+14                4
+15                5
+
+Exerício 3: Monte uma query que:
+
+Crie um banco de dados chamado normalization ;
+Crie todas as tabelas resultantes do exercício 2 (na 2ª Forma Normal);
+Popule todas as tabelas com os dados fornecidos nos exercícios.
+
+DROP DATABASE IF EXISTS normalization;
+CREATE DATABASE normalization;
+CREATE TABLE normalization.Funcionario_info (
+  Info_id INT PRIMARY KEY AUTO_INCREMENT,
+  Email varchar(300) NOT NULL,
+  Contato varchar(300) NOT NULL
+) ENGINE = InnoDB;
+INSERT INTO
+  normalization.Funcionario_info (Email, Contato)
+VALUES
+  ('jo@gmail.com', '(35)998552-1445'),
+  (
+    'andre1990@gmail.com',
+    '(47)99522-4996'
+  ),
+  (
+    'cindy@outlook.com',
+    '(33)99855-4669'
+  ),
+  (
+    'fernandamendes@yahoo.com',
+    '(33)99200-1556'
+  );
+CREATE TABLE normalization.Funcionario (
+    Funcionario_id INT PRIMARY KEY AUTO_INCREMENT,
+    Nome varchar(300) NOT NULL,
+    Sobrenome varchar(300) NOT NULL,
+    Info_id INT NOT NULL,
+    DataCadastro DATETIME NOT NULL,
+    FOREIGN KEY (Info_id) REFERENCES Funcionario_info(Info_id)
+  ) ENGINE = InnoDB;
+INSERT INTO
+  normalization.Funcionario (
+    Funcionario_id,
+    Nome,
+    Sobrenome,
+    Info_id,
+    DataCadastro
+  )
+VALUES
+  (
+    12,
+    'Joseph',
+    'Rodrigues',
+    1,
+    '2020-05-05 08:50:25'
+  ),
+  (
+    13,
+    'André',
+    'Freeman',
+    2,
+    -- Atenção aqui, tirei a hora, vamos ver se funciona ao criar a tabela.
+    '2020-02-05' -- Funcionou! Como a coluna é DATETIME, a hh:mm:ss ficou: "2020-02-05 00:00:00".
+  ),
+  (
+    14,
+    'Cíntia',
+    'Duval',
+    3,
+    '2020-05-05 10:55:35'
+  ),
+  (
+    15,
+    'Fernanda',
+    'Mendes',
+    4,
+    '2020-05-05 11:45:40'
+  );
+CREATE TABLE normalization.Setor (
+    Setor_id INT PRIMARY KEY AUTO_INCREMENT,
+    Setor varchar(300) NOT NULL
+  ) ENGINE = InnoDB;
+INSERT INTO
+  normalization.Setor (Setor)
+VALUES
+  ('Administração'),
+  ('Vendas'),
+  ('Operacional'),
+  ('Estratégico'),
+  ('Marketing');
+CREATE TABLE normalization.Funcionario_setor (
+    Funcionario_id INT NOT NULL,
+    Setor_id INT NOT NULL,
+    FOREIGN KEY (Funcionario_id) REFERENCES Funcionario(Funcionario_id),
+    FOREIGN KEY (Setor_id) REFERENCES Setor(Setor_id),
+    CONSTRAINT PRIMARY KEY(Funcionario_id, Setor_id)
+  );
+INSERT INTO
+  normalization.Funcionario_setor (Funcionario_id, Setor_id)
+VALUES
+  (12, 1),
+  (12, 2),
+  (13, 3),
+  (14, 2),
+  (14, 4);
+
+  Hora de mexer os dedos
+
+Após ter visto todo o processo de como sair de um problema e chegar até a criação de um banco de dados, é preciso um certo tempo para internalizar esse conteúdo. Com isso em mente, segue a proposta:
+
+Com o intuito de te dar mais tempo para absorver o material de hoje, tente refazer o banco de dados albuns , caso já o tenha criado no decorrer da aula de hoje. Então, apague o banco de dados e recarregue a página para que as respostas sobre como criar o banco de dados e tabelas não estejam visíveis e expandidas.
+
+Tente, com a ajuda do material de hoje:
+
+Identificar as entidades, atributos e relacionamentos.
+
+Criar o diagrama e o banco novamente por conta própria, sem olhar as respostas, que estão encapsuladas.

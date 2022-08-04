@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main id="paiDoPai">
+      <section id="pai">
+        <section id="primeiroFilho"></section>
+        <section id="elementoOndeVoceEsta">
+          <section id="primeiroFilhoDoFilho"></section>
+          <section id="segundoEUltimoFilhoDoFilho"></section>
+        </section>
+        Atenção!
+        <section id="terceiroFilho"></section>
+        <section id="quartoEUltimoFilho"></section>
+      </section>
+    </main>
+    <script>
+      let eu = document.getElementById("elementoOndeVoceEsta");
+      eu.parentElement.style.color = "green";
+      eu.firstElementChild.innerText = "Atention";
+      let pai = document.getElementById("pai");
+      pai.firstElementChild.innerText = "Atentione";
+      eu.previousElementSibling.innerText = "Atencion";
+
+      // 6
+      eu.nextSibling.innerText = "Hola";
+
+      eu.nextElementSibling.innerText = "Sapataria";
+      pai.children[3].innerText = "La Camiseria";
+
+      let irmao = document.createElement("section");
+      pai.appendChild(irmao);
+
+      let meuFilho = document.createElement("section");
+      eu.appendChild(meuFilho);
+
+      let meuNeto = document.getElementById("primeiroFilhoDoFilho");
+      let bisNeto = document.createElement("section");
+      meuNeto.appendChild(bisNeto);
+      bisNeto.innerText = "Bisneto!";
+
+      bisNeto.parentElement.parentElement.nextElementSibling.innerText = "Vitória!"
+      
+      let remove = document.querySelectorAll("#pai")
+
+      console.log(remove);
+
+      let ideias = 'Botão para transcrever áudios em libras, para surdos. E '
+    </script>
+  </body>
+</html>
+
