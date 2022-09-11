@@ -1,7 +1,7 @@
-const bodyParser = require("body-parser");
-const express = require("express");
+const bodyParser = require('body-parser');
+const express = require('express');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const app = express();
 
@@ -13,11 +13,11 @@ const {
   HTTP_CREATED_STATUS,
   HTTP_NOT_FOUND_STATUS,
   HTTP_BAD_REQUEST_STATUS,
-} = require("./helpers/constants");
+} = require('./helpers/constants');
 
-const User = require("./models/userModel");
+const User = require('./models/userModel');
 
-app.post("/user", async (req, res) => {
+app.post('/user', async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   try {
     User.isValid(firstName, lastName, email, password);
@@ -31,13 +31,13 @@ app.post("/user", async (req, res) => {
   }
 });
 
-app.get("/user", async (_req, res) => {
+app.get('/user', async (_req, res) => {
   const users = await User.getAll();
 
   res.status(HTTP_OK_STATUS).json(users);
 });
 
-app.get("/user/:id", async (req, res) => {
+app.get('/user/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findById(parseInt(id));
@@ -48,7 +48,7 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
-app.put("/user/:id", async (req, res) => {
+app.put('/user/:id', async (req, res) => {
   const { id } = req.params;
   const { firstName, lastName, email, password } = req.body;
   try {
@@ -64,7 +64,7 @@ app.put("/user/:id", async (req, res) => {
     return res.status(HTTP_OK_STATUS).json(updatedUser);
   } catch (e) {
     console.error(e.message);
-    if (e.message !== "Usuário não encontrado")
+    if (e.message !== 'Usuário não encontrado')
       return res.status(HTTP_BAD_REQUEST_STATUS).json(e);
     return res.status(HTTP_NOT_FOUND_STATUS).json(e);
   }
