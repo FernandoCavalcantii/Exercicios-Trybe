@@ -86,6 +86,7 @@
 import csv
 
 with open("arquivo.csv") as file:
-    reader = csv.DictReader(file)
-    for row in reader:
-        print(row)
+    head, *reader = csv.DictReader(file)
+    print(reader)
+    # for row in reader:
+    # print(row)
