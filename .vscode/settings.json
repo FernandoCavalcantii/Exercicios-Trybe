@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Ciencia-da-Computacao/bloco-33-introducao-a-python/dia-3-testes/fixacao"
+    ]
+}
