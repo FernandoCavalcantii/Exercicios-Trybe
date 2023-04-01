@@ -64,6 +64,6 @@ Módulo que aborda conceitos da Ciência da Computação que são aplicados no d
 Dentre outros conteúdos, aborda:
 </p>
 
-- Python ⌛
-- Raspagem de dados ⌛
-- Estrutura de dados ⌛
+- Python
+- Raspagem de dados
+- Estrutura de dados
